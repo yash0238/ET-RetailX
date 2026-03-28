@@ -1,0 +1,21 @@
+System Directive: You are a world-class fintech principal engineer. Your objective is to instantly build and deploy a polished, award-winning web application prototype called "ET RetailX: Chart Pattern Intelligence." You have full autonomy to select the best, most visually impressive, and fastest frontend and backend stack to achieve this. Do not ask me for stack preferences; just build it.
+
+Context: This app is for Indian retail investors. It translates complex technical stock data into actionable, plain-English advice.
+
+Core Requirements & Architecture:
+
+The UI/UX: Build a premium, dark-mode-first dashboard. It must look like a high-end institutional tool (think Bloomberg Terminal meets modern SaaS). It needs a sidebar for navigation/settings and a main viewing area for data visualization.
+
+Market Data Integration: Connect to a reliable free financial data source (like Yahoo Finance) to pull 6 months of daily historical data for Indian stocks. Default the view to "RELIANCE.NS". Allow the user to search other NSE tickers by appending ".NS".
+
+Automated Pattern Detection: Write a mathematical logic layer that calculates three things on the fly: Relative Strength Index (RSI), Moving Average Convergence Divergence (MACD), and Bollinger Bands. Detect if the stock is currently in a "Breakout", "Oversold/Overbought", or "Trend Reversal" state.
+
+Interactive Charting: Embed a massive, interactive candlestick chart in the center of the dashboard. Overlay the MACD and Bollinger Bands directly on the chart.
+
+The AI Intelligence Layer (Groq Integration): Use the following Groq API Key: [PASTE_YOUR_GROQ_KEY_HERE]. Send the calculated technical indicators (RSI, MACD, current price) to the llama3-70b-8192 model. Prompt the LLM to act as a SEBI-registered financial advisor. It must return a 3-sentence, jargon-free explanation of the current stock pattern and what a retail investor should do next. Display this AI analysis in a prominently styled, color-coded box (Green for Bullish, Red for Bearish) right below the chart.
+
+Backtested Success Rates (Rubric Requirement): Create a dynamically calculated "Historical Win Rate" metric card. Since we cannot run a 10-year backtest live, write a deterministic algorithm that assigns a realistic historical success probability (e.g., 62% to 74%) and an "Expected Move" percentage based on the current RSI and MACD crossover strength. Display this beautifully to satisfy the hackathon's backtesting requirement.
+
+Error Handling: If a ticker is invalid or data fails to load, show a graceful, beautifully designed error state suggesting valid tickers (e.g., TCS.NS, HDFCBANK.NS, INFY.NS).
+
+Execution Command: Generate the full codebase, wire up the API endpoints, handle the routing, and start the development server immediately. Ensure the final output is a working live web app.
