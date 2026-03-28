@@ -1,15 +1,16 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: ET RetailX Chart Pattern Intelligence API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: stock
+    description: Stock data and analysis
 paths:
   /healthz:
     get:
@@ -24,6 +25,70 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /stock/{ticker}:
+    get:
+      operationId: getStockData
+      tags: [stock]
+      summary: Get stock historical data and technical indicators
+      parameters:
+        - name: ticker
+          in: path
+          required: true
+          schema:
+            type: string
+          description: NSE ticker symbol (e.g. RELIANCE.NS)
+      responses:
+        "200":
+          description: Stock data with indicators
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StockDataResponse"
+        "404":
+          description: Ticker not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /stock/{ticker}/analysis:
+    post:
+      operationId: getAiAnalysis
+      tags: [stock]
+      summary: Get AI-powered analysis via Groq
+      parameters:
+        - name: ticker
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalysisRequest"
+      responses:
+        "200":
+          description: AI analysis result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnalysisResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +99,132 @@ components:
       required:
         - status
 
+    CandleStick:
+      type: object
+      properties:
+        date:
+          type: string
+        open:
+          type: number
+        high:
+          type: number
+        low:
+          type: number
+        close:
+          type: number
+        volume:
+          type: number
+      required: [date, open, high, low, close, volume]
+
+    Indicators:
+      type: object
+      properties:
+        rsi:
+          type: number
+          nullable: true
+        macd:
+          type: number
+          nullable: true
+        macdSignal:
+          type: number
+          nullable: true
+        macdHistogram:
+          type: number
+          nullable: true
+        bbUpper:
+          type: number
+          nullable: true
+        bbMiddle:
+          type: number
+          nullable: true
+        bbLower:
+          type: number
+          nullable: true
+        currentPrice:
+          type: number
+        priceChange:
+          type: number
+        priceChangePct:
+          type: number
+        pattern:
+          type: string
+          enum: [Breakout, Oversold, Overbought, Trend Reversal, Neutral]
+        winRate:
+          type: number
+        expectedMove:
+          type: number
+        sentiment:
+          type: string
+          enum: [Bullish, Bearish, Neutral]
+      required:
+        - currentPrice
+        - priceChange
+        - priceChangePct
+        - pattern
+        - winRate
+        - expectedMove
+        - sentiment
+
+    StockDataResponse:
+      type: object
+      properties:
+        ticker:
+          type: string
+        companyName:
+          type: string
+        candles:
+          type: array
+          items:
+            $ref: "#/components/schemas/CandleStick"
+        indicators:
+          $ref: "#/components/schemas/Indicators"
+      required: [ticker, companyName, candles, indicators]
+
+    AnalysisRequest:
+      type: object
+      properties:
+        rsi:
+          type: number
+          nullable: true
+        macd:
+          type: number
+          nullable: true
+        macdSignal:
+          type: number
+          nullable: true
+        currentPrice:
+          type: number
+        pattern:
+          type: string
+        sentiment:
+          type: string
+        winRate:
+          type: number
+        expectedMove:
+          type: number
+        companyName:
+          type: string
+      required: [currentPrice, pattern, sentiment, winRate, expectedMove, companyName]
+
+    AnalysisResponse:
+      type: object
+      properties:
+        analysis:
+          type: string
+        sentiment:
+          type: string
+          enum: [Bullish, Bearish, Neutral]
+        actionLabel:
+          type: string
+      required: [analysis, sentiment, actionLabel]
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        suggestions:
+          type: array
+          items:
+            type: string
+      required: [error]

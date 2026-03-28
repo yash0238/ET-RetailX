@@ -1,0 +1,17 @@
+packages:
+  "lightweight-charts": "High-performance financial charts"
+  "framer-motion": "Smooth animations for UI elements"
+  "lucide-react": "Icons"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility for merging tailwind classes safely"
+  "date-fns": "Date formatting"
+
+images:
+  - path: "artifacts/retailx/public/images/logo-mark.png"
+    description: "Minimalist geometric fintech logo mark, sharp edges, cyan and deep blue, transparent background, bloomberg style"
+    aspect_ratio: "1:1"
+
+notes:
+  - using lightweight-charts for the candlestick and indicator rendering
+  - extracting React Query hooks from @workspace/api-client-react
+  - computing historical BB and MACD on the client to visualize the line series, since API provides only the latest snapshot
