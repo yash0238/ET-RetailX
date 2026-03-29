@@ -1,14 +1,15 @@
 # ET RetailX — Chart Pattern Intelligence
 
-ET RetailX is an AI-powered market intelligence prototype built for the **ET AI Hackathon 2026** under **Problem Statement 6: AI for the Indian Investor**.
+EET RetailX is an advanced AI-powered market intelligence platform built for the **ET AI Hackathon 2026** under **Problem Statement 6: AI for the Indian Investor**.
 
-The platform helps Indian retail investors understand market signals faster by combining technical pattern detection, historical signal framing, and AI-generated plain-English explanations in one interface.
+The platform helps Indian retail investors understand market signals faster by combining technical pattern detection, historical NSE backtesting, corporate filing correlations, and AI-generated plain-English explanations customized to their personal risk profile.
 
 ## Problem
 
-Retail investors often react to noise, tips, or fragmented information instead of structured signals. Reading charts, checking indicators, and translating them into actionable decisions takes time and expertise.
+Retail investors often react to noise, missing critical technical setups and corporate filings. Managing mutual fund portfolios and direct equity on "gut feel" leads to poor capital allocation. Furthermore, standard financial advisors are too expensive for 95% of Indians.
 
-This project turns raw market data into an explainable intelligence layer that identifies patterns, highlights possible opportunities, and gives simple investor-friendly analysis.
+ET RetailX turns fragmented market data into an explainable, personalized intelligence layer that acts as a continuous money mentor and signal-finder.
+
 
 ## Solution
 
@@ -16,23 +17,16 @@ ET RetailX analyzes stock data, detects technical setups such as momentum or rev
 
 The goal is not just to display charts, but to convert them into understandable decision support.
 
-## Features
 
-- Interactive stock dashboard for Indian market tickers.
-- Technical signal detection using live/historical market data.
-- AI-generated plain-English explanation of current market setup.
-- Historical win-rate style signal framing for better interpretability.
-- Clean UI for quick demo and investor-friendly presentation.
-- Fast prototype workflow suitable for real-time hackathon evaluation.
+## Core Features
 
-## Workflow
+- **Real-Time Technical Signal Detection:** Identifies breakouts, momentum shifts, and reversal patterns instantly.
+- **Historical NSE Backtesting Engine:** Validates every detected signal against historical NSE universe data to provide statistical win-rates, not just guesses.
+- **Multi-Stock Screening:** Scans and processes multiple tickers simultaneously to surface the best setups across the market.
+- **News & Filings Correlation:** Fuses quantitative technical signals with qualitative corporate announcements and filings to confirm breakouts.
+- **Portfolio-Level Recommendations:** Contextualizes individual stock signals based on the user's existing portfolio structure and overlap.
+- **Risk Personalization:** Adapts the AI's plain-English insights based on the user's specific risk appetite and holding horizon (e.g., conservative long-term vs. aggressive swing trading).
 
-1. User enters a stock ticker.
-2. The system fetches recent stock data.
-3. Technical indicators and patterns are computed.
-4. A signal is identified from the market data.
-5. The AI layer explains the signal in simple language.
-6. The dashboard displays chart, metrics, and recommendation context.
 
 ## Architecture
 
@@ -50,6 +44,26 @@ The system follows a modular pipeline:
 - **AI Insight Engine:** Generates human-readable explanation from computed indicators.
 - **UI Layer:** Shows output in a structured dashboard for demo and usability.
 
+## End-to-End Workflow
+
+1. User inputs their risk profile, timeframe, and target tickers (or portfolio).
+2. The system screens the stocks and detects a technical setup (e.g., MACD Bullish Crossover).
+3. The Backtest Engine calculates the historical win-rate for this exact setup on this specific stock.
+4. The News Agent checks for recent filings that support or contradict the move.
+5. The AI Insight Agent synthesizes everything into a 3-sentence action plan tailored to the user's risk tolerance.
+6. The interactive dashboard renders the chart, backtest stats, and AI explanation simultaneously.
+
+
+## Features
+
+- Interactive stock dashboard for Indian market tickers.
+- Technical signal detection using live/historical market data.
+- AI-generated plain-English explanation of current market setup.
+- Historical win-rate style signal framing for better interpretability.
+- Clean UI for quick demo and investor-friendly presentation.
+- Fast prototype workflow suitable for real-time hackathon evaluation.
+
+
 ## Tech Overview
 
 This project was rapidly prototyped to prioritize:
@@ -63,12 +77,10 @@ The implementation chooses tools automatically based on speed, reliability, and 
 ## Demo
 
 - **Pitch Video:** [Add your 3-minute video link here]
-- **Live Demo:** [Add Replit/public app link here]
+- **Live Demo:** [[Add Replit/public app link here](https://groq-api-control--yast3676.replit.app/)]
 - **GitHub Repository:** [Add repo link here]
 
 ## Screenshots
-
-Add 2–3 screenshots here before final submission:
 
 ### Dashboard
 ![Dashboard Screenshot](./assets/dashboard.png)
@@ -163,14 +175,6 @@ artifacts-monorepo/
 └── package.json            
 ```
 
-
-## Future Improvements
-
-- Add real backtesting engine on historical NSE universe
-- Add multi-stock screening
-- Add news and filings-based signal correlation
-- Add portfolio-level recommendations
-- Add user personalization for risk appetite and holding horizon
 
 ## Author
 
