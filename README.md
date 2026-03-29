@@ -77,7 +77,7 @@ The implementation chooses tools automatically based on speed, reliability, and 
 ## Demo
 
 - **Pitch Video:** [Add your 3-minute video link here]
-- **Live Demo:** [[Add Replit/public app link here](https://groq-api-control--yast3676.replit.app/)]
+- **Live Demo:** [[app link here](https://groq-api-control--yast3676.replit.app/)]
 - **GitHub Repository:** [Add repo link here]
 
 ## Screenshots
